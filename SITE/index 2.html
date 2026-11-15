@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SunSet Studios Imagem | Animação e Design em Angola</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --orange:#FB7420;
+  --orange-soft:#E39465;
+  --star:#F59A33;
+  --ink:#000;
+  --bg:#fff;
+  --radius:22px;
+  --border:3px solid var(--orange);
+  --max:1200px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.4;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{width:min(100% - 2.5rem,var(--max));margin-inline:auto}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+/* ===== FOTO (espaço para as tuas imagens) =====
+   Basta colocar o atributo src na tag <img> e o texto "FOTO" desaparece. */
+.foto-slot{position:relative;display:grid;place-items:center;overflow:hidden}
+.foto-slot>span{font-weight:800;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:.01em}
+.foto-slot>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.foto-slot>img:not([src]){display:none}
+.foto-slot:has(>img[src])>span{display:none}
+
+/* ===== Botões ===== */
+.btn{display:inline-block;font-weight:700;font-size:.95rem;padding:.35rem .9rem;border-radius:8px;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-outline{border:1.5px solid var(--ink);background:#fff}
+.btn-dark{background:var(--ink);color:var(--orange)}
+
+/* ===== Header ===== */
+.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px)}
+.header .container{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:1rem}
+.logo{font-weight:800;font-size:2.2rem;line-height:.8;letter-spacing:-.04em;position:relative;display:inline-block;padding-bottom:.6rem}
+.logo b{color:var(--ink)}.logo i{font-style:normal;color:var(--orange)}
+.logo small{position:absolute;bottom:0;left:0;font-size:.45rem;letter-spacing:0;color:var(--orange);font-weight:600}
+.logo small u{text-decoration:none;color:var(--ink);margin-left:.9rem}
+.nav{display:flex;align-items:center;gap:1.8rem;font-weight:700;font-size:1rem}
+.nav a.link{position:relative;padding:.2rem 0}
+.nav a.link::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--orange);transition:width .25s}
+.nav a.link:hover::after,.nav a.link.active::after{width:100%}
+.nav a.link.active{color:var(--orange)}
+.menu-btn{display:none;background:none;border:0;cursor:pointer;width:42px;height:42px}
+.menu-btn span{display:block;height:3px;background:var(--ink);margin:6px 8px;border-radius:3px;transition:transform .25s,opacity .25s}
+.menu-btn.open span:nth-child(1){transform:translateY(9px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-9px) rotate(-45deg)}
+
+/* ===== Hero ===== */
+.hero{padding-block:2rem 5rem}
+.hero .container{display:grid;grid-template-columns:1.05fr 1fr;gap:2rem;align-items:center}
+.flyers{position:relative;min-height:520px}
+.flyer{position:absolute;width:min(300px,52%);border:var(--border);border-radius:var(--radius);background:#fff;padding:1.1rem 1rem;display:flex;flex-direction:column}
+.flyer-1{left:0;top:90px}
+.flyer-2{left:46%;top:0}
+.flyer header{display:flex;justify-content:space-between;align-items:center;font-size:.95rem}
+.dots{display:flex;gap:.3rem}.dots i{width:12px;height:12px;border-radius:50%;background:#000}.dots i:nth-child(2){background:var(--orange)}
+.flyer .foto-slot{height:200px}
+.flyer-2 .foto-slot{height:170px}
+.flyer p{font-size:.62rem;line-height:1.3;margin-top:.8rem}
+.hero h1{font-size:clamp(2rem,4.4vw,3.5rem);line-height:1.12;font-weight:800;text-transform:uppercase;letter-spacing:-.01em}
+.hero .sub{color:var(--orange);font-size:clamp(1.05rem,1.8vw,1.4rem);margin:.8rem 0 1.2rem;text-transform:uppercase;max-width:20ch}
+.hero .actions{display:flex;gap:1.3rem;flex-wrap:wrap}
+
+/* ===== Quem sou eu ===== */
+.about-me{position:relative;background:#fff;min-height:620px}
+.about-me .bg{position:absolute;left:0;top:0;bottom:0;width:48%;background:linear-gradient(90deg,var(--orange) 40%,var(--orange-soft));}
+.about-me .container{position:relative;display:grid;grid-template-columns:1fr 1fr 1.1fr;align-items:end;min-height:620px}
+.about-me h2{position:absolute;left:0;top:90px;color:#fff;font-size:clamp(2.6rem,6vw,4.8rem);line-height:1.15;font-weight:800;z-index:2}
+.about-me .portrait{grid-column:2;height:560px;align-self:end;z-index:1}
+.about-me .portrait .foto-slot{height:100%;color:#000}
+.about-me .portrait img{object-position:center bottom;object-fit:contain}
+.counter{position:absolute;left:0;top:340px;background:#fff;border-radius:16px;padding:.7rem 1.4rem;text-align:center;z-index:3;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.counter strong{display:block;font-size:2.6rem;line-height:1;font-weight:800}
+.counter span{font-size:.75rem;font-weight:800;text-transform:uppercase}
+.watermark{position:absolute;left:0;bottom:0;font-size:4.2rem;font-weight:800;color:rgba(0,0,0,.28);line-height:.9;z-index:2;white-space:nowrap}
+.bio{grid-column:3;align-self:center;padding-left:1.5rem;padding-bottom:5rem}
+.bio .name{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(1.3rem,2.4vw,2rem);color:var(--orange);letter-spacing:.02em;text-transform:uppercase;margin-bottom:.6rem}
+.bio h3{font-size:clamp(1.5rem,2.6vw,2.2rem);font-weight:800;line-height:1.2}
+.bio h3 em{font-style:normal;color:var(--orange)}
+.bio .role{margin-top:4.5rem;font-size:1.3rem;color:var(--orange)}
+.bio .role span{color:#000;display:block}
+
+/* ===== Serviços ===== */
+.section-title{text-align:center;font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:2rem}
+.services{padding-block:4rem}
+.icons{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:880px;margin:0 auto 2rem;text-align:center}
+.icons div{color:var(--orange);font-size:.85rem}
+.icons svg{width:56px;height:56px;margin:0 auto .6rem;stroke:#000;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.pills{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:800px;margin:0 auto}
+.pill{border:var(--border);border-radius:30px;padding:1.1rem 1.4rem;text-align:center;font-size:.9rem;display:grid;place-items:center;transition:background .25s,color .25s,transform .25s}
+.pill:hover{background:var(--orange);color:#fff;transform:translateY(-3px)}
+.pill.wide{grid-column:1/-1;max-width:400px;margin-inline:auto;width:100%}
+
+/* ===== Sobre nós + Habilidades ===== */
+.skills-wrap{padding-block:3rem 4rem}
+.skills-wrap .container{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;max-width:1000px}
+.skills-wrap h4{color:var(--orange);font-size:1.15rem;font-weight:700;margin-bottom:1.5rem}
+.skills-wrap .about h4{text-align:center}
+.about-card{border:var(--border);border-radius:var(--radius);padding:1.6rem 1.8rem;text-align:center;font-size:.9rem;line-height:1.5;max-width:340px;margin-inline:auto}
+.skill{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.8rem}
+.skill .ic{width:42px;height:42px;flex:none;border-radius:10px;display:grid;place-items:center;background:#000;color:#fff;font-weight:700}
+.skill .ic.round{border-radius:50%}
+.skill .bar{flex:1;position:relative;height:4px;background:#000}
+.skill .bar i{position:absolute;left:0;top:0;height:100%;width:0;background:var(--orange);transition:width 1.4s cubic-bezier(.2,.7,.2,1)}
+.skill .bar b{position:absolute;right:0;top:-22px;font-size:.75rem;font-weight:500}
+
+/* ===== Depoimentos ===== */
+.clients{padding-block:3rem 4rem}
+.clients h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.2;margin-bottom:3rem;max-width:12ch}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem}
+.review{border:var(--border);border-radius:16px;padding:2rem 2rem 1.6rem;min-height:270px;display:flex;flex-direction:column;justify-content:space-between}
+.review:nth-child(1){margin-top:0}.review:nth-child(2){margin-top:-6px}.review:nth-child(3){margin-top:8px}
+.stars{color:var(--star);font-size:1.9rem;letter-spacing:.35rem}
+.review p{font-size:.78rem;line-height:1.4;margin-block:1rem 1.3rem}
+.who{display:flex;align-items:center;gap:1.2rem}
+.who .foto-slot{width:52px;height:52px;border-radius:50%;background:#e8e8e8;flex:none}
+.who .foto-slot>span{font-size:.5rem}
+.who strong{font-size:1.1rem;font-weight:800}
+
+/* ===== Contacto ===== */
+.contact{position:relative;margin-top:1rem}
+.contact .container{max-width:none;width:100%;display:grid;grid-template-columns:1fr 1fr;min-height:800px;padding:0}
+.contact .left{padding:3rem 1.5rem 3rem max(1.5rem,calc((100vw - var(--max))/2));position:relative;display:flex;flex-direction:column}
+.contact .left small{color:var(--orange);font-size:1.15rem;margin-left:3.2rem}
+.contact .left h2{color:var(--orange);font-size:clamp(2.3rem,4.4vw,3.6rem);font-weight:800;line-height:1.1;margin-block:.2rem 1.4rem}
+.contact .left p{color:var(--orange);font-size:1.15rem;margin-left:2.7rem;max-width:22ch}
+.mail{display:flex;align-items:center;gap:.6rem;color:var(--orange);font-size:1.3rem;margin-top:2.5rem}
+.mail svg{width:34px;height:34px;fill:var(--orange)}
+.contact .left .foto-slot{margin-top:auto;height:260px;width:100%}
+.contact .right{background:linear-gradient(90deg,var(--orange-soft),var(--orange) 40%);color:#fff;padding:3rem max(1.5rem,calc((100vw - var(--max))/2)) 3rem 2.5rem;display:flex;flex-direction:column;justify-content:space-between}
+.contact .right .foto-slot{height:300px;color:#000}
+.contact .right h3{font-size:clamp(2rem,4vw,3.4rem);font-weight:800;line-height:1.15}
+.cv{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.6rem}
+.cv svg{width:28px;height:30px;fill:#fff;opacity:.9}
+.cv a{border:2px solid rgba(255,255,255,.85);border-radius:30px;padding:.5rem 1.1rem;font-weight:600;font-size:.9rem;transition:background .25s,color .25s}
+.cv a:hover{background:#fff;color:var(--orange)}
+
+/* ===== Redes sociais ===== */
+.social{padding-block:3rem 2rem}
+.social-box{border:var(--border);border-radius:var(--radius);padding:1.8rem 1rem;display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;text-align:center}
+.social-box a{display:flex;flex-direction:column;align-items:center;gap:.6rem;font-weight:700;font-size:1.05rem;transition:transform .2s}
+.social-box a:hover{transform:translateY(-4px)}
+.s-ic{width:58px;height:58px;display:grid;place-items:center;background:var(--star);color:#fff;border-radius:14px;font-weight:800;font-size:1.9rem}
+.s-ic.round{border-radius:50%}
+.s-ic svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:2.4}
+
+/* ===== Projetos ===== */
+.projects {
+  padding-block: 2rem 4rem;
+}
+
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.2rem;
+}
+
+.proj {
+  border: var(--border);
+  border-radius: var(--radius);
+  height: 270px;
+  transition: transform .25s;
+  overflow: hidden; /* Garante que nada sai para fora do cartão */
+}
+
+.proj:hover {
+  transform: translateY(-4px);
+}
+
+.proj .foto-slot {
+  height: 100%;
+  width: 100%;
+}
+
+/* Imagem ajustada para acompanhar a caixa horizontalmente */
+.proj .foto-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Encaixa horizontalmente/verticalmente sem cortar a imagem original */
+  display: block;
+}
+/* ===== Footer ===== */
+.footer{background:#000;color:#fff;margin-top:2rem;border-top:6px solid var(--orange)}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem;padding-block:3.5rem 2.5rem}
+.footer .logo b{color:#fff}
+.footer .logo small u{color:#fff}
+.footer-about p{margin-top:1.2rem;font-size:.9rem;line-height:1.6;color:rgba(255,255,255,.75);max-width:32ch}
+.footer h5{color:var(--orange);font-size:1rem;font-weight:700;margin-bottom:1.1rem}
+.footer ul{list-style:none;display:grid;gap:.7rem;font-size:.92rem}
+.footer ul a{color:rgba(255,255,255,.85);transition:color .2s,padding-left .2s}
+.footer ul a:hover{color:var(--orange);padding-left:.3rem}
+.footer-cta{display:inline-block;margin-top:1.2rem;border:2px solid var(--orange);color:var(--orange);border-radius:30px;padding:.5rem 1.2rem;font-weight:600;font-size:.9rem;transition:background .25s,color .25s}
+.footer-cta:hover{background:var(--orange);color:#000}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.18)}
+.footer-bottom .container{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding-block:1.3rem;font-size:.85rem;color:rgba(255,255,255,.7)}
+.to-top{background:var(--orange);color:#000;border:0;border-radius:50%;width:42px;height:42px;font-size:1.2rem;font-weight:800;cursor:pointer;transition:transform .2s}
+.to-top:hover{transform:translateY(-3px)}
+@media (max-width:980px){.footer-top{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.footer-top{grid-template-columns:1fr;gap:2rem}.footer-bottom .container{justify-content:center;text-align:center}}
+
+/* ===== Responsivo ===== */
+@media (max-width:980px){
+  .menu-btn{display:block}
+  .nav{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;padding:1.2rem 1.5rem 1.8rem;gap:1rem;border-bottom:3px solid var(--orange);max-height:0;overflow:hidden;opacity:0;pointer-events:none;transition:opacity .25s}
+  .nav.open{max-height:520px;opacity:1;pointer-events:auto}
+  .hero .container{grid-template-columns:1fr}
+  .flyers{min-height:480px;order:2}
+  .about-me .bg{width:100%}
+  .about-me .container{grid-template-columns:1fr;min-height:0;padding-top:2rem}
+  .about-me h2{position:static;margin-bottom:1rem}
+  .counter{position:static;display:inline-block;margin-bottom:1rem}
+  .about-me .portrait{grid-column:1;height:420px}
+  .watermark{font-size:2.6rem}
+  .bio{grid-column:1;padding:2rem 0 4rem;background:#fff;margin-inline:-1.25rem;padding-inline:1.25rem}
+  .bio .role{margin-top:1.5rem}
+  .skills-wrap .container,.reviews{grid-template-columns:1fr}
+  .review{margin-top:0!important}
+  .contact .container{grid-template-columns:1fr;min-height:0}
+  .contact .left{padding:2.5rem 1.25rem}
+  .contact .right{padding:2.5rem 1.25rem}
+  .social-box{grid-template-columns:repeat(3,1fr);row-gap:1.8rem}
+  .proj-grid{gap:1.5rem}
+}
+@media (max-width:620px){
+  .icons{grid-template-columns:repeat(2,1fr)}
+  .pills{grid-template-columns:1fr}
+  .flyers{min-height:430px}
+  .flyer{width:62%}
+  .flyer-2{left:36%}
+  .social-box{grid-template-columns:repeat(2,1fr)}
+  .proj-grid{grid-template-columns:1fr}
+  .proj{height:220px}
+  .logo{font-size:1.8rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="container">
+    <!-- Para usar a tua imagem de logótipo, troca este <a> por <img src="logo.png" alt="SunSet"> -->
+    <a href="#inicio" class="logo" aria-label="SunSet Studios Imagem"><b>SUN</b><i>SET</i><small>STUDIOS<u>IMAGEM</u></small></a>
+    <button class="menu-btn" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav" id="nav">
+      <a class="link" href="#inicio">Inicio</a>
+      <a class="link" href="#servicos">Serviços</a>
+      <a class="link" href="#sobre">Sobre nós</a>
+      <a class="link" href="#blog">Avaliações</a>
+      <a class="btn btn-outline" href="https://wa.me/244000000000" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-dark" href="#redes">Redes social</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="container">
+    <div class="flyers">
+      <article class="flyer flyer-1">
+        <header><span>FLYER</span><span class="dots"><i></i><i></i><i></i></span></header>
+        <figure class="foto-slot"><span>FOTO</span><img alt="Flyer 1"><img src="66eb929d-e145-4b5f-9a81-d35d2f835933.png" alt="" width="300"><!-- adiciona: src="flyer1.jpg" --></figure>
+        <p>Prototipo aplicatico de reserva de restaurante .</p>
+      </article>
+      <article class="flyer flyer-2">
+        <header><span>FLYER</span><span class="dots"><i></i><i></i><i></i></span></header>
+        <figure class="foto-slot"><span> <img src="Friday.png" width="200"></span><img alt="Flyer 2"><!-- adiciona: src="flyer2.jpg" --></figure>
+        <p>Cartaz para digital influencer Marivania</p>
+      </article>
+    </div>
+    <div>
+      <h1>O futuro da animação e design em Angola</h1>
+      <p class="sub">Faça já a sua marcação conosco.</p>
+      <div class="actions">
+        <a class="btn btn-outline" href="https://wa.me/message/TGYTTLYYRORKK1" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-dark" href="#redes">Redes social</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUEM SOU EU ============ -->
+<section class="about-me" id="sobre">
+  <div class="bg"></div>
+  <div class="container">
+    <h2>Quem<br>sou eu ?</h2>
+    <div class="counter"><strong data-count="20">+ 0</strong><span>Trabalhos feitos</span></div>
+    <figure class="portrait">
+      <div class="foto-slot"><span>FOTO</span><img alt="Eliwidson Imbinga"><img src="Retrato profissional em fundo carvão.png" alt=""><!-- adiciona: src="eliwidson.png" (PNG sem fundo fica melhor) --></div>
+    </figure>
+    <div class="watermark" aria-hidden="true">TECNOLOGIA</div>
+    <div class="bio">
+      <p class="name">Eliwidson Imbinga</p>
+      <h3><em>CEO</em> da SunSet<br>Técnico Médio<br>de informática e<br>design , <em>UX UI</em></h3>
+      <p class="role">Web designer, estudante de <span>Engenharia de informática</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVIÇOS ============ -->
+<section class="services" id="servicos">
+  <div class="container">
+    <h2 class="section-title">Serviços</h2>
+    <div class="icons">
+      <div>
+        <svg viewBox="0 0 48 48"><path d="M18 6h12v22l-6 8-6-8z"/><path d="M18 14h12"/></svg>
+        UI UX DESIGNER
+      </div>
+      <div>
+        <svg viewBox="0 0 48 48"><rect x="6" y="8" width="36" height="24" rx="3"/><path d="M18 42h12M24 32v10M6 26h36"/></svg>
+        WEB DEVOLOPE
+      </div>
+      <div>
+        <svg viewBox="0 0 48 48"><path d="M6 20v8l8 2 22 10V10L14 18z"/><path d="M14 30l2 10h6l-2-8M40 20v8"/></svg>
+        MARKETING DIGITAL
+      </div>
+      <div>
+        <svg viewBox="0 0 48 48"><rect x="6" y="6" width="32" height="12" rx="2"/><path d="M38 12h4v12H22v6"/><rect x="19" y="30" width="6" height="12" rx="1"/></svg>
+        BRAND INDETIFY
+      </div>
+    </div>
+    <div class="pills">
+      <div class="pill">Criamos todo tipo de protótipos de aplicativos mobile e de sites para sua empresa ou negócio</div>
+      <div class="pill">Criamos todo tipo de campanha de marketing digital para sua empresa ou negócio</div>
+      <div class="pill wide">Criamos Flyer e fizemos edição de vídeos profissional para sua empresa ou negócio</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE NÓS / HABILIDADE ============ -->
+<section class="skills-wrap">
+  <div class="container">
+    <div class="about">
+      <h4>Sobre nós</h4>
+      <div class="about-card">Somos uma empresa especializada em dar vida em outras empresa a partir de da imagem , tiramos a sua ideia do papel para se tornar em realidade não basta só um click nós fizemos história tornarem- em grandes memórias nas suas rede social</div>
+    </div>
+    <div class="skills">
+      <h4>NOSSA HABILIDADE</h4>
+      <div class="skill"><div class="ic" style="background:none;color:#000;font-size:1.7rem">❖</div><div class="bar" data-level="90"><i></i><b>90%</b></div></div>
+      <div class="skill"><div class="ic">Ps</div><div class="bar" data-level="50"><i></i><b>50%</b></div></div>
+      <div class="skill"><div class="ic round">C</div><div class="bar" data-level="100"><i></i><b>100%</b></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section class="clients" id="blog">
+  <div class="container">
+    <h2>Aprovado por Grandes Clientes</h2>
+    <div class="reviews">
+      <!-- Repete este bloco para adicionar mais depoimentos -->
+      <article class="review">
+        <div><div class="stars" aria-label="5 estrelas">★★★★★</div>
+        <p>Gosto muito de ser teu cliente fiel , sempre que peço teu trabalho fico satisfeito acrito que atua empresa irá crescer muito mais com trabalho e de dedicação</p></div>
+        <div class="who"><figure class="foto-slot"><span><img src="julian-myles-JRPu9rnNgH8-unsplash.jpg" alt=""></span><img alt="Carlos Santos"></figure><strong>Carlos Santos</strong></div>
+      </article>
+      <article class="review">
+        <div><div class="stars" aria-label="5 estrelas">★★★★★</div>
+        <p>Primeiramente boa tarde, passando para dizer que gostei mesmo muito do teu serviço, estou grato por teres feito isso tão bem, que continues a fazer um bom trabalho como esse, e assim terás uma boa caminhada na sua jornada.</p></div>
+        <div class="who"><figure class="foto-slot"><span><img src="dorrell-tibbs-HSY1UqOyN5k-unsplash.jpg" alt=""></span><img alt="Carlos Santos"></figure><strong>Judice Feijó</strong></div>
+      </article>
+      <article class="review">
+        <div><div class="stars" aria-label="5 estrelas">★★★★★</div>
+        <p>Gostei muito dos trabalhos que fazes   e expresso o meu elogio pelo excelente trabalho que fazes é a nota que dou pelo teu trabalho é 10 porque eu amo muito os trabalhos que fazes demostras profissionalismo e  criatividade nos teus trabalhos.</p></div>
+        <div class="who"><figure class="foto-slot"><span><img src="justin-essah-0xqmwDnYnEc-unsplash.jpg" alt=""></span><img alt="Carlos Santos"></figure><strong>Carlos</strong></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="left">
+      <small>Vamos trabalhar juntos !!!</small>
+      <h2>Tens algum Projeto em mente ?</h2>
+      <p>Estou disponível para novos projetos, vamos criar juntos ?</p>
+      <a class="mail" href="mailto:imbingali@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M2 5h20v14H2z" opacity=".0"/><path d="M2 6.5 12 13l10-6.5V5H2zM2 8l10 6.5L22 8v11H2z"/></svg>
+        imbingali@gmail.com
+      </a>
+      <figure class="foto-slot"><span></span><img alt="Foto de contacto"></figure>
+    </div>
+    <div class="right">
+      <figure class="foto-slot"><span></span><img alt="Eliwidson Imbinga"></figure>
+      <div>
+        <h3>Minha visão é criar felicidades ao meus clientes</h3>
+        <div class="cv">
+          <svg viewBox="0 0 24 28"><path d="M3 1h18v26H3zM7 7h4v4H7zM13 8h5v1.5h-5zM13 11h5v1.5h-5zM7 15h11v1.5H7zM7 19h11v1.5H7z" fill-rule="evenodd" opacity=".9"/></svg>
+          <a href="Currículo simples Documento A4.pdf" download>Obter Meu Currículo ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REDES SOCIAIS ============ -->
+<section class="social" id="redes">
+  <div class="container">
+    <h2 class="section-title">Redes social</h2>
+    <div class="social-box">
+      <a href="https://instagram.com/eliwidson" target="_blank" rel="noopener">
+        <span class="s-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></span>eliwidson</a>
+      <a href="https://threads.net/@eliwidson" target="_blank" rel="noopener">
+        <span class="s-ic">@</span>eliwidson</a>
+      <a href="https://facebook.com/" target="_blank" rel="noopener">
+        <span class="s-ic round">f</span>Eliwidson imbinga</a>
+      <a href="https://tiktok.com/@lisilva025" target="_blank" rel="noopener">
+        <span class="s-ic">♪</span>lisilva025</a>
+      <a href="https://linkedin.com/in/" target="_blank" rel="noopener">
+        <span class="s-ic" style="font-size:1.5rem">in</span>Eliwidson Imbinha</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJETOS ============ -->
+<section class="projects" id="projetos">
+  <div class="container">
+    <h2 class="section-title">Meus Projetos</h2>
+    <div class="proj-grid">
+      <!-- Repete este bloco para adicionar mais projetos -->
+      <article class="proj"><figure class="foto-slot"><span>FOTO</span><img alt=""><img src="66eb929d-e145-4b5f-9a81-d35d2f835933.png" ><!-- src="projeto1.jpg" --></figure></article>
+      <article class="proj"><figure class="foto-slot"><span>FOTO</span><img alt=""><img src="Flex Party Poster.jpg" alt=""><!-- src="projeto2.jpg" --></figure></article>
+       <article class="proj"><figure class="foto-slot"><span>FOTO</span><img alt=""><img src="V design.jpg" ><!-- src="projeto1.jpg" --></figure></article>
+      <article class="proj"><figure class="foto-slot"><span>FOTO</span><img alt=""><img src="Friday.png" alt=""><!-- src="projeto2.jpg" --></figure></article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-top">
+    <div class="footer-about">
+      <a href="#inicio" class="logo" aria-label="SunSet Studios Imagem"><b>SUN</b><i>SET</i><small>STUDIOS<u>IMAGEM</u></small></a>
+      <p>O futuro da animação e design em Angola. Tiramos a sua ideia do papel e transformamos em realidade.</p>
+    </div>
+    <div>
+      <h5>Navegação</h5>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#sobre">Sobre nós</a></li>
+        <li><a href="#projetos">Meus Projetos</a></li>
+        <li><a href="#blog">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Redes social</h5>
+      <ul>
+        <li><a href="https://www.instagram.com/eliwidson?cplk=MXhqcWx6N2xmeWNuZg==" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://threads.net/@eliwidson" target="_blank" rel="noopener">Threads</a></li>
+        <li><a href="https://www.threads.com/@eliwidson" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://threads.com/@eliwidson" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="https://www.tiktok.com/@lisilva025?_r=1&_t=ZS-9BNE70r7p9l" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Vamos trabalhar juntos !!!</h5>
+      <ul>
+        <li><a href="mailto:imbingali@gmail.com">imbingali@gmail.com</a></li>
+        <li><a href="https://wa.me/244000000000" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li>Luanda, Angola</li>
+      </ul>
+      <a class="footer-cta" href="#contacto">Tens algum projeto em mente ?</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <span>© <span id="year">2026</span> SunSet Studios Imagem. Todos os direitos reservados.</span>
+      <button class="to-top" type="button" aria-label="Voltar ao topo">↑</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // Menu mobile
+  const btn = document.querySelector('.menu-btn');
+  const nav = document.getElementById('nav');
+  const toggle = open => {
+    nav.classList.toggle('open', open);
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+  };
+  btn.addEventListener('click', () => toggle(!nav.classList.contains('open')));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+  document.addEventListener('keydown', e => e.key === 'Escape' && toggle(false));
+
+  // Link ativo conforme a secção visível
+  const links = [...document.querySelectorAll('.nav a.link')];
+  const map = new Map(links.map(l => [l.getAttribute('href').slice(1), l]));
+  const secObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && map.has(e.target.id)) {
+        links.forEach(l => l.classList.remove('active'));
+        map.get(e.target.id).classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  map.forEach((_, id) => { const s = document.getElementById(id); s && secObs.observe(s); });
+
+  // Footer: ano automático e botão "voltar ao topo"
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelector('.to-top').addEventListener('click', () =>
+    window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Barras de habilidade e contador animados ao entrar no ecrã
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const animObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      if (el.dataset.level) el.querySelector('i').style.width = el.dataset.level + '%';
+      if (el.dataset.count) {
+        const end = +el.dataset.count;
+        if (reduce) { el.textContent = '+ ' + end; }
+        else {
+          const t0 = performance.now(), dur = 1200;
+          const step = t => {
+            const p = Math.min((t - t0) / dur, 1);
+            el.textContent = '+ ' + Math.round(end * p);
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        }
+      }
+      animObs.unobserve(el);
+    });
+  }, { threshold: .4 });
+  document.querySelectorAll('[data-level],[data-count]').forEach(el => animObs.observe(el));
+})();
+</script>
+</body>
+</html>
